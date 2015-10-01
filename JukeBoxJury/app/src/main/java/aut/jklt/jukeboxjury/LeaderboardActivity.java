@@ -23,24 +23,6 @@ public class LeaderboardActivity extends Activity {
         String[] values = new String[]{"First song,", "Second song", "Third song", "Fourth song", "Fifth song", "Sixth song" };
 
     }
-
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-    listView.setAdapter(adapter);
-
-    listView.setOnItemClickListener(new OnItemClickListener() {
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view,
-        int position, long id) {
-
-            int itemPosition     = position;
-            String  itemValue    = (String) listView.getItemAtPosition(position);
-            Toast.makeText(getApplicationContext(), itemValue , Toast.LENGTH_LONG).show();
-        }
-
-    };
 }
 
 
