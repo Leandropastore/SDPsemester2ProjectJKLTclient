@@ -7,11 +7,24 @@ import android.view.MenuItem;
 
 
 public class VoteActivity extends ActionBarActivity {
+    private final int ONE_VOTE = 1;     //the vote that is returned to .PlaylistActivity(.MainActivity in this test)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();        //gets intent from MainActivity
+
+        Button vote = (Button) findViewById(R.id.vote_button);
+        vote.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "You voted for the song", Toast.LENGTH_LONG).show();
+                Intent returnVote = new Intent();
+                returnVote.putExtra("vote", 1);         //has been tested with other values for int
+                setResult(RESULT_OK, returnVote);
+                finish();
+        });
     }
 
     @Override
