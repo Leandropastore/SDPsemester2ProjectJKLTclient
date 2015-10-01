@@ -4,6 +4,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.widget.Toast;
+import android.widget.Button;
+import android.view.View;
 
 
 public class VoteActivity extends ActionBarActivity {
@@ -24,8 +28,9 @@ public class VoteActivity extends ActionBarActivity {
                 returnVote.putExtra("vote", 1);         //has been tested with other values for int
                 setResult(RESULT_OK, returnVote);
                 finish();
-        });
-    }
+            }
+        })
+    ;}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -33,19 +38,18 @@ public class VoteActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                // Handle action bar item clicks here. The action bar will
+                // automatically handle clicks on the Home/Up button, so long
+                // as you specify a parent activity in AndroidManifest.xml.
+                int id = item.getItemId();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+                //noinspection SimplifiableIfStatement
+                if (id == R.id.action_settings) {
+                    return true;
+                }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+                return super.onOptionsItemSelected(item);
+            }
 }
