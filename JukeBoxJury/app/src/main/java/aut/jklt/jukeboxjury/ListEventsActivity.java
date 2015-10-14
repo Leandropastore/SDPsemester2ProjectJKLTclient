@@ -1,41 +1,36 @@
 package aut.jklt.jukeboxjury;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+public class ListEventsActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    //private String song_title = "Thriller";
+    private View viewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_events);
 
-
-        Button start = (Button)findViewById(R.id.start_button);
-        start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent launchPad = new Intent(getBaseContext(), LaunchPadActivity.class);
-                startActivity(launchPad);
-            }
-        });
+        ListView l = (ListView) findViewById(R.id.listview);
+        String[] values = new String[] { "Dance Party ", "Student DanceNight", "Rock with DJ Dallu",
+                "Mtv Unplugged Arijit ", "Live performance Bruno Mars" };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, values);
+        viewContainer = findViewById(R.id.undobar);
+        l.setAdapter(adapter);
     }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_list_events, menu);
         return true;
     }
 
@@ -52,5 +47,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View view) {
+        Toast.makeText(this, "Deletion undone", Toast.LENGTH_LONG).show();
+        viewContainer.setVisibility(View.GONE);
     }
 }

@@ -18,7 +18,7 @@ public class LeaderboardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        listView = (ListView)findViewById(R.id.list);
+        listView = (ListView)findViewById(R.id.leader_board_list);
 
         String[] values = new String[]{"First song,", "Second song", "Third song", "Fourth song", "Fifth song", "Sixth song" };
 

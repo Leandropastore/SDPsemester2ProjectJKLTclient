@@ -5,37 +5,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
+public class PlayListActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    //private String song_title = "Thriller";
+    private final int VOTE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        Button start = (Button)findViewById(R.id.start_button);
-        start.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent launchPad = new Intent(getBaseContext(), LaunchPadActivity.class);
-                startActivity(launchPad);
-            }
-        });
+        setContentView(R.layout.activity_play_list);
     }
 
-
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == VOTE) {
+            if(resultCode == RESULT_OK) {
+                Bundle bundle = data.getExtras();
+                int value = bundle.getInt("vote");
+                Toast.makeText(getBaseContext(), "Vote was worth " + value, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_play_list, menu);
         return true;
     }
 
