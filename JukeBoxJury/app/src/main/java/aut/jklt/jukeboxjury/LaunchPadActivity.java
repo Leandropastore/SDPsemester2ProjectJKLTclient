@@ -37,12 +37,12 @@ public class LaunchPadActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.playlist_button:
-                Intent playList = new Intent(getBaseContext(), VoteActivity.class);
+                Intent playList = new Intent(getBaseContext(), PlayListActivity.class);
                 startActivity(playList);
                 break;
 
             case R.id.events_button:
-                Intent events = new Intent(getBaseContext(), VoteActivity.class);
+                Intent events = new Intent(getBaseContext(), ListEventsActivity.class);
                 startActivity(events);
                 break;
         }

@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_leaderboard">Voted Songs Leader Board</string>
+    <string name="title_activity_leaderboard">Song Vote Leader Board</string>
     <string name="title_activity_vote">Vote For A Song</string>
     <string name="title_activity_launch_pad">Start The Fun</string>
     <string name="title_activity_play_list">Play List</string>

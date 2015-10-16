@@ -5,16 +5,49 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class PlayListActivity extends AppCompatActivity {
 
+    private TextView songTitle;
+    private TextView voteCount;
     private final int VOTE = 1;
+    private String[] songs = {"Thriller"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_list);
+
+        //header elements
+        songTitle = (TextView) findViewById(R.id.song_title);
+        voteCount = (TextView) findViewById(R.id.vote_count);
+        songTitle.setText("Song Title");
+        voteCount.setText("Vote Count");
+
+        //creates custom adapter and sets onClickListener for song items
+        ArrayAdapter<String> adapter = new CustomAdapter(this, R.layout.activity_playlist_listrow, songs);
+        ListView playList = (ListView) findViewById(R.id.playlist);
+        playList.setAdapter(adapter);
+        playList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Song", songs[position]);
+                Intent intent = new Intent(getBaseContext(), VoteActivity.class);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, VOTE);
+            }
+        });
     }
 
     @Override
@@ -23,8 +56,8 @@ public class PlayListActivity extends AppCompatActivity {
         if(requestCode == VOTE) {
             if(resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
-                int value = bundle.getInt("vote");
-                Toast.makeText(getBaseContext(), "Vote was worth " + value, Toast.LENGTH_LONG).show();
+                String value = bundle.getString("Song");
+                Toast.makeText(getBaseContext(), "The song was " + value, Toast.LENGTH_LONG).show();
             }
         }
     }
