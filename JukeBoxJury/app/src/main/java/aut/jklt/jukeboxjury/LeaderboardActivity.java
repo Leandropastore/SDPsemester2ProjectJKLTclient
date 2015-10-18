@@ -1,18 +1,10 @@
 package aut.jklt.jukeboxjury;
 
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.Activity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -25,22 +17,16 @@ import java.io.IOException;
 public class LeaderboardActivity extends AppCompatActivity {
     public static final String URL = "http://192.168.42.211:8080/JukeBoxJury/JukeBoxJury";
     public static final String NAMESPACE = "http://webservices.jklt/";
+    private static final String METHOD = "displayLeaderboard";
+    private String[] songInfo = new String[1];
 
-    /**********************************************************************************
-     *                   YOU WILL NEED TO CHANGE THE METHOD HERE
-
-        private static final String METHOD = "METHOD YOU ARE CALLING FROM WEB SERVICE";
-
-     *************************************************************************************/
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
-
         listView = (ListView)findViewById(R.id.leader_board_list);
-
         String[] values = new String[]{"First song,", "Second song", "Third song", "Fourth song", "Fifth song", "Sixth song" };
 
         new AsyncTaskRunner().execute(values);            //call inner class to run in background
@@ -63,15 +49,9 @@ public class LeaderboardActivity extends AppCompatActivity {
                 //SoapObject that calls webservice address and method name
                 SoapObject request = new SoapObject(NAMESPACE, METHOD);
 
-                //add song name property to soap object to be passed via ksoap2
 
-        /***************************************************************************
-                 * YOU WILL NEED TO CHANGE THIS TO SUIT YOU PART OF THE CODE
-                 *
-                        request.addProperty("song",songInfo[0]);
-                 *
-                 *
-         ***************************************************************************/
+                request.addProperty("song",songInfo[0]);
+
 
                 //SoapEnvelope.VER11 is SOAP Version 1.1 constant
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

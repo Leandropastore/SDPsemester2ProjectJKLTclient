@@ -23,13 +23,9 @@ public class ListEventsActivity extends AppCompatActivity {
 
     public static final String URL = "http://192.168.42.211:8080/JukeBoxJury/JukeBoxJury";
     public static final String NAMESPACE = "http://webservices.jklt/";
+    private static final String METHOD = "displayEvents";
+    private String[] songInfo = new String[1];
 
-    /**********************************************************************************
-     *                   YOU WILL NEED TO CHANGE THE METHOD HERE
-
-     private static final String METHOD = "METHOD YOU ARE CALLING FROM WEB SERVICE";
-
-     *************************************************************************************/
     private View viewContainer;
 
     @Override
@@ -65,15 +61,8 @@ public class ListEventsActivity extends AppCompatActivity {
                 //SoapObject that calls webservice address and method name
                 SoapObject request = new SoapObject(NAMESPACE, METHOD);
 
-                //add song name property to soap object to be passed via ksoap2
+                request.addProperty("song",songInfo[0]);
 
-                /***************************************************************************
-                 * YOU WILL NEED TO CHANGE THIS TO SUIT YOU PART OF THE CODE
-                 *
-                 request.addProperty("song",songInfo[0]);
-                 *
-                 *
-                 ***************************************************************************/
 
                 //SoapEnvelope.VER11 is SOAP Version 1.1 constant
                 envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
